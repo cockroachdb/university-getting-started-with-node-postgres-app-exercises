@@ -55,6 +55,10 @@ function run_all_tests {
 }
 
 function init_db {
+    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    echo INITIALIZING THE DATABASE
+    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     connectionString='postgresql://root@localhost:26257/movr_vehicles?sslmode=disable'
 
     cockroach sql --url "$connectionString" --execute="
@@ -79,11 +83,6 @@ function start_cockroachdb {
     echo STARTING COCKROACHDB
     echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     cockroach start-single-node --insecure --background
-
-    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    echo Initializing the Database
-    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    init_db
 }
 
 function stop_cockroachdb {
@@ -101,6 +100,8 @@ function stop_cockroachdb {
 # Determine which command is being requested, and execute it.
 if [ "$COMMAND" = "verify" ]; then
     verify_all_exercises
+elif [ "$COMMAND" = "init_db" ]; then
+    init_db
 elif [ "$COMMAND" = "start_cockroachdb" ]; then
     start_cockroachdb
 elif [ "$COMMAND" = "stop_cockroachdb" ]; then

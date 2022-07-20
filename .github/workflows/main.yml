@@ -18,6 +18,8 @@ jobs:
         run: curl https://binaries.cockroachdb.com/cockroach-v21.2.5.linux-amd64.tgz | tar -xz && sudo cp -i cockroach-v21.2.5.linux-amd64/cockroach /usr/local/bin/
       - name: Start CockroachDB
         run: ./build.sh start_cockroachdb
+      - name: Initialize CockroachDB
+        run: ./build.sh init_db
       - name: Run the build
         run: ./build.sh verify
       - name: Stop CockroachDB
