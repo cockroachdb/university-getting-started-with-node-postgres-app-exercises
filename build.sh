@@ -85,6 +85,7 @@ function start_cockroachdb {
 }
 
 function stop_cockroachdb {
+    ps -ef | grep cockroach
     PID=$(pgrep -fa 'cockroach start-single-node --insecure' || echo 0)
     
     echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
