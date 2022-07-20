@@ -1,0 +1,29 @@
+### Mac ###
+.DS_Store
+
+### certs & keys ###
+*.crt
+*.pem
+*.key
+ssl
+
+### Editors ###
+.*.swp
+.idea
+*.iws
+*.iml
+*.ipr
+*.sublime-project
+*.sublime-workspace
+.vscode
+
+### Node ###
+build/
+node_modules/
+packages/react-devtools*
+yarn.lock
+
+### Misc ###
+target/
+cockroach-data/
+inflight_trace_dump/
