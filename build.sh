@@ -55,14 +55,13 @@ function run_all_tests {
 }
 
 function init_db {
-    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    echo INITIALIZING THE DATABASE
-    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    connectionString=$1
 
-    connectionString='postgresql://root@localhost:26257/movr_vehicles?sslmode=disable'
+    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    echo INITIALIZING THE DATABASE at $connectionString
+    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     cockroach sql --url "$connectionString" --execute="
-        DROP DATABASE movr_vehicles;
         CREATE DATABASE movr_vehicles;
 
         CREATE TABLE movr_vehicles.vehicles (
@@ -101,7 +100,7 @@ function stop_cockroachdb {
 if [ "$COMMAND" = "verify" ]; then
     verify_all_exercises
 elif [ "$COMMAND" = "init_db" ]; then
-    init_db
+   init_db ${2:-"postgresql://root@localhost:26257/movr_vehicles?sslmode=disable"}
 elif [ "$COMMAND" = "start_cockroachdb" ]; then
     start_cockroachdb
 elif [ "$COMMAND" = "stop_cockroachdb" ]; then
