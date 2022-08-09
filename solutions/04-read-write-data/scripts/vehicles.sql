@@ -2,7 +2,7 @@ CREATE DATABASE movr_vehicles;
 
 CREATE TABLE movr_vehicles.vehicles (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    purchase_date TIMESTAMPTZ DEFAULT now(),
+    purchase_date DATE DEFAULT current_date(),
     serial_number STRING NOT NULL,
     make STRING NOT NULL,
     model STRING NOT NULL,
